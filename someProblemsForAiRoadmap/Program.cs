@@ -35,11 +35,57 @@ namespace someProblemsForAiRoadmap
                 }
             }
 
-            //Problem 3: Median of two sorted arrays of the same size:
+            //Problem 3: Median of two sorted arrays of different sizes:       // STILL NEEDS TO BE FINISHED
             int[] nums1 = { 1, 5, 7 };
             int[] nums2 = { 2, 3, 9 };
             int[] mergedArray = new int[nums1.Length + nums2.Length];
-            int smallest = nums1[0];
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                mergedArray[i] = nums1[i];
+            }
+            for (int i = 0; i < nums2.Length; i++)
+            {
+                mergedArray[i + nums1.Length] = nums2[i];
+            }
+
+            int smallest = 312313;
+            for (int i = 0; i < mergedArray.Length; i++)
+            {
+                for (int j = i; j < mergedArray.Length; j++)
+                {
+                    for (int k = (i + 1); k < mergedArray.Length; k++)
+                    {
+                        if (mergedArray[j] < mergedArray[k])
+                        {
+                            if (smallest > mergedArray[j])
+                            {
+                                smallest = mergedArray[j];
+                            }
+                        }
+                        else if (mergedArray[j] > mergedArray[k])
+                        {
+                            if (smallest > mergedArray[k])
+                            {
+                                smallest = mergedArray[k];
+                            }
+                        }
+                    }
+                    mergedArray[i] = smallest;
+                    smallest = 100;
+                }
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                Console.WriteLine(mergedArray[i]);
+            }
+
+
+
+            /*
+            int[] nums1 = { 1, 5, 7 };
+            int[] nums2 = { 2, 3, 9 };
+            int[] mergedArray = new int[nums1.Length + nums2.Length];
+            int smallest = 5;
             for (int i = 0; i < mergedArray.Length; i++)
             {
                 for (int j = i; j < nums1.Length; j++)
@@ -62,12 +108,14 @@ namespace someProblemsForAiRoadmap
                         }
                     }
                     mergedArray[i] = smallest;
+                    smallest = 100;
                 }
             }
             for (int i = 0; i < 6; i ++)
             {
                 Console.WriteLine(mergedArray[i]);
             }
+            */ // This is all a failed attempt
         }
     }
 }
