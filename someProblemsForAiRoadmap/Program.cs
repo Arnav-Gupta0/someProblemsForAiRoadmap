@@ -48,37 +48,69 @@ namespace someProblemsForAiRoadmap
                 mergedArray[i + nums1.Length] = nums2[i];
             }
 
-            int smallest = 312313;
-            for (int i = 0; i < mergedArray.Length; i++)
+            for (int i = 0; i < mergedArray.Length - 1; i++)
             {
-                for (int j = i; j < mergedArray.Length; j++)
+                int minIndex = i; 
+
+                for (int j = i + 1; j < mergedArray.Length; j++)
                 {
-                    for (int k = (i + 1); k < mergedArray.Length; k++)
+                    if (mergedArray[j] < mergedArray[minIndex])
                     {
-                        if (mergedArray[j] < mergedArray[k])
-                        {
-                            if (smallest > mergedArray[j])
-                            {
-                                smallest = mergedArray[j];
-                            }
-                        }
-                        else if (mergedArray[j] > mergedArray[k])
-                        {
-                            if (smallest > mergedArray[k])
-                            {
-                                smallest = mergedArray[k];
-                            }
-                        }
+                        minIndex = j;
                     }
-                    mergedArray[i] = smallest;
-                    smallest = 100;
                 }
+
+                int temp = mergedArray[i];
+                mergedArray[i] = mergedArray[minIndex];
+                mergedArray[minIndex] = temp;
             }
-            for (int i = 0; i < 6; i++)
+            int medianValue = (mergedArray.Length + 1) / 2;
+            if (mergedArray.Length % 2 == 1)
             {
-                Console.WriteLine(mergedArray[i]);
+                Console.WriteLine($"The Median of the sorted data set is {mergedArray[medianValue]}");
+            } 
+            else if (mergedArray.Length % 2 == 0)
+            {
+                double median = (mergedArray[medianValue - 1] + mergedArray[medianValue]) / 2;
+                Console.WriteLine($"The Median of the sorted data set is {median}");
             }
 
+            //Problem 4: Pair Sum in a sorted and Rotated Array:
+            int[] nums3 = { 11, 15, 6, 8, 9, 10 };
+            Console.WriteLine("Please write a target integer");
+            int target = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < nums3.Length; i++)
+            {
+                for (int j = i + 1; j < nums3.Length; j++)
+                {
+                    if (nums3[i] + nums3[j] == target)
+                    {
+                        Console.WriteLine($"There is a pair {nums3[i]} and {nums3[j]} that sums to the value of {target}");
+                    }
+                }
+            }
+
+            //Problem 5: Missing in arithmetic progression
+            int[] nums4 = { 2, 4, 8, 10, 12, 14 };
+            int commonDifference = 0;
+            int check1 = nums4[1] - nums4[0];
+            int check2 = nums4[2] - nums4[1];
+            int check3 = nums4[3] - nums4[2];
+            if (check1 == check2)
+            {
+                commonDifference = check1;
+            } 
+            else if (check1 != check2)
+            {
+                commonDifference = check3;
+            }
+            for (int i = 0; i < nums4.Length - 1; i++)
+            {
+                if (nums4[i] + commonDifference != nums4[i + 1])
+                {
+                    Console.WriteLine($"In this case, the common differnece is {commonDifference}, and {nums4[i] + commonDifference} is missing between {nums4[i]} and {nums4[i + 1]}");
+                }
+            }
 
 
             /*
